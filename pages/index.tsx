@@ -1,7 +1,6 @@
 import {Box, Center, Heading, Text, keyframes, Button, usePrefersReducedMotion, Stack, useColorMode, Image} from "@chakra-ui/react";
 import Head from "next/head";
 import Header from "../components/Header";
-import IndexTitle from "../components/IndexTitle";
 
 const backgroundChange = keyframes `	
   0% {

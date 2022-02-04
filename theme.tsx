@@ -35,8 +35,12 @@ const styles: Styles = {
       _hover: {
         textDecoration:'none'
       }
+    },
+    button:{
+      _focus:{
+        outline:'0 !important'
+      } 
     }
-    
   })
 };
 
@@ -69,6 +73,9 @@ const components = {
         boxShadow: '0 0 20px rgb(82 61 241 / 60%)',
         color:"white",
         fontWeight:'400',
+        _focus:{
+          outline:0
+        },
         _hover: {
           bg: mode(darken('light.accent', 10), darken('dark.accent', 10))(props)
         },
@@ -147,7 +154,7 @@ const components = {
 
 const config = {
   initialColorMode: 'dark',
-  useSystemColorMode: false,
+  useSystemColorMode: true,
 }
 
 export const theme = extendTheme({

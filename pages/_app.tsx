@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '../theme'
 import Router from 'next/router'
 import { useState } from 'react'
@@ -20,7 +20,6 @@ const App = ({ Component, pageProps }) => {
     return (
        
         <ChakraProvider resetCSS theme={theme}>
-            <ColorModeScript initialColorMode="dark" />
             <Component {...pageProps} />
         </ChakraProvider>
       
