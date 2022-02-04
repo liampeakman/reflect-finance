@@ -22,7 +22,8 @@ const styles: Styles = {
   global: (props) => ({
     body: {
       color: mode('gray.800 !important', '#fff !important')(props),
-      bg: mode('light.primary !important', '#000 !important')(props),
+      backgroundImage: mode('linear-gradient(#ffffff, #ffffff)', 'linear-gradient(#000, #000)')(props), 
+      backgroundColor: mode('light.primary !important', '#000 !important')(props),
       fontFamily:'DM Sans',
       fontWeight:'400',
       minWidth:'300px'
