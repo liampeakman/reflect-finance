@@ -27,7 +27,7 @@ const Index = () => {
     : `${backgroundChange} infinite 3s linear`
 
   return (
-    <Box position='relative'>
+    <Box position='relative' height='100vh'>
       <Head><link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet"/>
       </Head>
       <Stack 
@@ -46,7 +46,7 @@ const Index = () => {
         </Stack>
       <Header/>
 
-      <Center padding={10} textAlign={{base:'left', sm:'center'}} h='32rem'>
+      <Center padding={10} textAlign={{base:'left', sm:'center'}} height='calc(100% - 200px)' minH='200px'>
         <Stack spacing={5} justify='center' align={{base:'left', sm:'center'}}>
         <Heading as='h1' fontSize={{base:'5xl', md:'6xl'}} lineHeight={{base:'3rem', md:'4rem'}}>
           We <Text display='inline-block' background='-webkit-linear-gradient(180deg,#eed389, #c96161, #3e4eda, #61c980, #871aec)' backgroundSize='400% 400%' backgroundClip='text' textShadow='0 0 40px rgb(255 255 255 / 20%)' animation={animation}>reflect</Text> profits back to you.
