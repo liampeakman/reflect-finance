@@ -35,7 +35,7 @@ const { colorMode, toggleColorMode } = useColorMode();
             </Button>
         </Stack>
         </Stack>
-        <Stack isInline justify='flex-end' alignItems='center'></Stack>
+        <Stack isInline justify='flex-end' alignItems='center'>
         <IconButton
             icon={colorMode === "light" ? <SunIcon/> : <MoonIcon/>}
             variant='rounded'
