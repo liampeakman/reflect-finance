@@ -26,7 +26,7 @@ const { colorMode, toggleColorMode } = useColorMode();
           display={{base:'none', lg:'unset'}} 
           >
             <ActiveLink href="/">Home</ActiveLink>
-            <ActiveLink href="/">App</ActiveLink>
+            {/* <ActiveLink href="/">App</ActiveLink> */}
             <Button as='a' rightIcon={<HiOutlineExternalLink/>} variant='header' href="/" target='_blank'>
              Buy
             </Button>
@@ -35,7 +35,7 @@ const { colorMode, toggleColorMode } = useColorMode();
             </Button>
         </Stack>
         </Stack>
-        <Stack isInline justify='flex-end' alignItems='center'>
+        <Stack isInline justify='flex-end' alignItems='center'></Stack>
         <IconButton
             icon={colorMode === "light" ? <SunIcon/> : <MoonIcon/>}
             variant='rounded'

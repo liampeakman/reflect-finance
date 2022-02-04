@@ -19,7 +19,7 @@ const backgroundChange = keyframes `
 const Index = () => {
 
   const prefersReducedMotion = usePrefersReducedMotion()
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
 
   const animation = prefersReducedMotion

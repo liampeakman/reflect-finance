@@ -145,8 +145,14 @@ const components = {
   }
 };
 
+const config = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
+
 export const theme = extendTheme({
   colors,
   components,
-  styles
+  styles,
+  config
 });
