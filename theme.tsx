@@ -21,8 +21,8 @@ const colors = {
 const styles: Styles = {
   global: (props) => ({
     body: {
-      color: mode('gray.800', 'whiteAlpha.900')(props),
-      bg: mode('light.primary', '#000')(props),
+      color: mode('gray.800 !important', '#fff !important')(props),
+      bg: mode('light.primary !important', '#000 !important')(props),
       fontFamily:'DM Sans',
       fontWeight:'400',
       minWidth:'300px'
