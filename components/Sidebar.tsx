@@ -1,4 +1,4 @@
-import {Stack, Image, useColorMode, Button, Link, IconButton, Icon, Divider, Text, Heading} from '@chakra-ui/react'
+import {Stack, Image, useColorMode,useColorModeValue, Button, Link, IconButton, Icon, Divider, Text, Heading} from '@chakra-ui/react'
 import {FaSlidersH, FaBalanceScaleLeft, FaCompressArrowsAlt, FaCalculator, FaUserAlt, FaTelegram, FaTwitter, FaDiscord} from 'react-icons/fa'
 import {AiFillFire} from 'react-icons/ai'
 import {HiOutlineExternalLink} from 'react-icons/hi'
@@ -9,13 +9,16 @@ const Sidebar = ({isOpen}) => {
 
 const { colorMode } = useColorMode();
 
+const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
+
+
   return (
     <Stack 
       transform={{base:isOpen ? 'translateX(0%)':'translateX(-100%)', md:'translateX(0%)'}}
-      background='rgba(255, 255, 255, 0.05)' 
-      backdropFilter='blur(16px) saturate(163%)'
+      background={bg}
+      backdropFilter='blur(7px)'
       border='1px solid rgba(255, 255, 255, 0.125)'
-      zIndex='3'
+      zIndex='5'
       overflow-y='scroll' 
       direction='column' 
       top={0} 
@@ -62,12 +65,12 @@ const { colorMode } = useColorMode();
         padding={5} 
         height={'auto'} 
         w={'100%'} 
-        maxW='85px'
+        maxW='100px'
         marginTop='18px'
         >
           
-          <Image src={colorMode === 'light' ? '../logo_dark.png': 
-        '../logo_light.png'}></Image>
+          <Image src={colorMode === 'light' ? '../logo_dark.svg': 
+        '../logo_light.svg'}></Image>
 
           
           {/* <Text color='white' fontSize='xl' textAlign='center'>⛓️💯♻️</Text> */}

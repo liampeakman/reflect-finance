@@ -28,20 +28,24 @@ const Index = () => {
   return (
     <Box position='relative' height='100vh'>
       <Head><link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet"/>
+      <link href="https://use.typekit.net/nmm0wmt.css" rel="stylesheet" />
       </Head>
       <Stack 
         spacing={0} 
         padding={5} 
         height={'auto'} 
         w={'100%'} 
-        maxW='85px'
+        maxW='70px'
+        direction='row'
         left={{base:'12px', md:'62px'}}
         transition={'left 0.3s ease'}
-        top='18px'
+        top='25px'
+        align='center'
         position='absolute'
         >
-          <Image src={colorMode === 'light' ? '../logo_dark.png': 
-        '../logo_light.png'}></Image>
+          <Image src={colorMode === 'light' ? '../logo_dark.svg': 
+        '../logo_light.svg'}></Image>
+          <Text paddingLeft={1} fontWeight={600}>ReflectFi</Text>
         </Stack>
       <Header/>
 
@@ -59,11 +63,11 @@ const Index = () => {
             _hover={{
               "& :nth-child(2)": {
                bottom:'10px',
-               transition: '0.3s ease'
+               transition: 'bottom 0.3s ease'
               }, 
               "& :nth-child(1)": {
                 top: '-30px',
-                transition: '0.3s ease'
+                transition: 'top 0.3s ease'
                },
             }}>
               <Text position='absolute' top='10px' transition='0.3s ease'>Dashboard</Text>
@@ -73,11 +77,11 @@ const Index = () => {
             _hover={{
               "& :nth-child(2)": {
                bottom:'10px',
-               transition: '0.3s ease'
+               transition: 'bottom 0.3s ease'
               }, 
               "& :nth-child(1)": {
                 top: '-30px',
-                transition: '0.3s ease'
+                transition: 'top 0.3s ease'
                },
             }}>
               <Text position='absolute' top='10px' transition='0.3s ease'>Buy $RFLCT</Text>
@@ -93,7 +97,7 @@ const Index = () => {
       right={0}
       margin='auto'
       filter='blur(40px)'
-      boxShadow='100px 100px 200px 20px rgba(255, 99, 132), -100px 100px 200px 20px rgba(54, 162, 235), -100px -100px 200px 20px rgba(255, 206, 86), 100px -100px 200px 20px rgba(153, 102, 255)'
+      boxShadow='100px 100px 200px 40px rgba(255, 99, 132), -100px 100px 200px 40px rgba(54, 162, 235), -100px -100px 200px 30px rgba(75, 192, 192), 100px -100px 200px 40px rgba(153, 102, 255)'
       width='30%'
       zIndex={-1}
       >

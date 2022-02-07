@@ -26,7 +26,7 @@ const Treasury = ({data}) => {
               <Stack direction='column' width='100%' spacing={0} maxW='200px'>
                 <Stack direction='column' align='left' justify='space-between' spacing={2} padding={3} >
                     <Text>Balance</Text>
-                    <Heading size={'xl'} background='-webkit-linear-gradient(180deg,#eed389, #c96161)' backgroundClip='text' textShadow='0 0 40px rgb(255 255 255 / 20%)'>${2}</Heading>
+                    <Heading size={'xl'} background='-webkit-linear-gradient(180deg,#eed389, #c96161)' backgroundClip='text' textShadow='0 0 40px rgb(255 255 255 / 20%)'>$100,000</Heading>
                 </Stack>
                 <Stack direction='column' align='left' justify='space-between' spacing={2} padding={3} >
                     <Text>Earnings (24hr)</Text>

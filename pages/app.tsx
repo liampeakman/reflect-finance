@@ -56,6 +56,7 @@ const App = ({coinGeckoData, zapperData}) => {
   return (
     <Box position='relative'>
       <Head><link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet"/>
+      <link href="https://use.typekit.net/nmm0wmt.css" rel="stylesheet" />
       </Head>
       <Header/>
       <SidebarOverlay isOpen={openSidebar} onClick={toggleSidebar}/>
@@ -78,7 +79,7 @@ const App = ({coinGeckoData, zapperData}) => {
       right={0}
       margin='auto'
       filter='blur(40px)'
-      boxShadow='100px 100px 200px 20px rgba(255, 99, 132), -100px 100px 200px 20px rgba(54, 162, 235), -100px -100px 200px 20px rgba(255, 206, 86), 100px -100px 200px 20px rgba(153, 102, 255)'
+      boxShadow='100px 100px 200px 40px rgba(255, 99, 132), -100px 100px 200px 40px rgba(54, 162, 235), -100px -100px 200px 30px rgba(75, 192, 192), 100px -100px 200px 40px rgba(153, 102, 255)'
       width='30%'
       zIndex={-1}
       >
@@ -89,7 +90,7 @@ const App = ({coinGeckoData, zapperData}) => {
       left={0}
       margin='auto'
       filter='blur(150px)'
-      boxShadow='100px 100px 300px 40px rgba(255, 99, 132), -100px 100px 300px 40px rgba(54, 162, 235), -100px -100px 300px 40px rgba(255, 206, 86), 100px -100px 300px 40px rgba(153, 102, 255)'
+      boxShadow='100px 100px 200px 60px rgba(255, 99, 132), -100px 100px 200px 60px rgba(54, 162, 235), -100px -100px 200px 60px rgba(255, 206, 86), 100px -100px 200px 60px rgba(153, 102, 255)'
       width='30%'
       zIndex={-1}
       >

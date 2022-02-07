@@ -1,7 +1,8 @@
-import {Flex, Stack, Image, useColorMode, IconButton, Button, Text} from '@chakra-ui/react'
+import {Flex, Stack, Image, useColorMode, IconButton, Button, Text, Icon} from '@chakra-ui/react'
 import ActiveLink from './ActiveLink'
 import {SunIcon, MoonIcon, ArrowForwardIcon} from "@chakra-ui/icons"
 import { HiOutlineExternalLink } from 'react-icons/hi';
+import { FaWallet } from 'react-icons/fa';
 
 
 
@@ -38,23 +39,14 @@ const { colorMode, toggleColorMode } = useColorMode();
         <Stack isInline justify='flex-end' alignItems='center'>
         <IconButton
             icon={colorMode === "light" ? <SunIcon/> : <MoonIcon/>}
-            variant='rounded'
+            variant='circle'
             aria-label='Color mode switcher'
             onClick={toggleColorMode}
-            />            
-            <Button position='relative' variant='primary' w='130px' h='40px' overflow='hidden' 
-            _hover={{
-              "& :nth-child(2)": {
-               bottom:'10px',
-               transition: '0.3s ease'
-              }, 
-              "& :nth-child(1)": {
-                top: '-30px',
-                transition: '0.3s ease'
-               },
-            }}>
-              <Text position='absolute' top='10px' transition='0.3s ease'>Dashboard</Text>
-              <Text position='absolute' bottom='-30px' transition='0.3s ease'>Coming Soon</Text>
+            /> 
+          
+            <Button position='relative' variant='rounded'>
+              <FaWallet />
+              <Text marginLeft={{md:'10px', base:'0'}} display={{md:'unset', base:'none'}}>Wallet</Text>
             </Button>
         </Stack>
     </Flex>

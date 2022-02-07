@@ -19,7 +19,7 @@ const SidebarToggle = ({onClick, isOpen}) => {
       >
         <IconButton
         icon={<ArrowForwardIcon/>}
-        variant='rounded'
+        variant='circle'
         aria-label='Toggle Drawer'    
         onClick={onClick}
         zIndex='99'  

@@ -22,17 +22,34 @@ const styles: Styles = {
   global: (props) => ({
     body: {
       color: mode('gray.800 !important', '#fff !important')(props),
-      backgroundImage: mode('linear-gradient(#ffffff, #ffffff)', 'linear-gradient(#000, #000)')(props), 
+      backgroundImage: mode('linear-gradient(#ffffff, #ffffff)', 'linear-gradient(#000, #000)')(props),
+      
       backgroundColor: mode('light.primary !important', '#000 !important')(props),
-      fontFamily:'DM Sans',
-      fontWeight:'400',
-      minWidth:'300px'
+      transition: 'background-color 3.5s ease, background-image 3.5s ease',
+      fontFamily:'pragmatica-extended',
+      fontWeight:'300',
+      fontStyle:'normal',
+      minWidth:'300px',
+      _before: {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",  
+        opacity: ".2",
+        zIndex: "-1",
+        background: "url(https://grainy-gradients.vercel.app/noise.svg)"
+      },      
+    },
+    h1: {
+      fontFamily:'pragmatica-extended !important',
     },
     h2: {
-      fontFamily:'DM Sans !important',
+      fontFamily:'pragmatica-extended !important',
     },
     a:{
-      color:mode('gray.800', 'whiteAlpha.900')(props),
+      color:mode('#000 !important', '#fff !important')(props),
       _hover: {
         textDecoration:'none'
       }
@@ -74,22 +91,25 @@ const components = {
         },
       }),
       secondary:(props) => ({
-        bg: mode('light.secondary', 'dark.secondary')(props),
-        color:"white",
+        bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
+        color:mode('#000', '#fff')(props),
         fontWeight:'400',
+        backdropFilter:'blur(1px)',
+        border:'1px solid rgba(255, 255, 255, 0.125)',
+        borderRadius:0,
         _hover: {
           bg: mode(darken('light.secondary', 10), darken('dark.secondary', 10))(props),
         }
       }),
       defaultDash:(props) => ({
         bg: 'none',
-        color:"white",
+        color:mode('#000', '#fff')(props),
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",
         padding:"0 15%",
         _hover: {
-          bg: mode(darken('light.accent', 30), darken('dark.accent', 30))(props),
+          bg: mode(whiten('light.secondary', 90), 'rgba(255, 255, 255, 0.05)')(props),
           transition: '0.3s ease'
         },
         a: {
@@ -100,7 +120,7 @@ const components = {
       }),
       activeDash:(props) => ({
         bg: mode('light.accent', 'dark.accent')(props),
-        color:"white",
+        color:mode('#000', '#fff')(props),
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",
@@ -112,7 +132,7 @@ const components = {
       }),
       external:(props) => ({
         bg: 'none',
-        color:"white",
+        color:mode('#000', '#fff')(props),
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",
@@ -122,13 +142,24 @@ const components = {
           color: mode(darken('white', 40), darken('white', 40))(props),
         }
       }),
-      rounded:(props) => ({
+      circle:(props) => ({
         //bg: mode('light.secondary', 'dark.secondary')(props),
         border:mode('solid 2px #00000015', 'solid 2px #ffffff15')(props), 
         fontWeight:'400',
         borderRadius:'900',
+        backdropFilter:'blur(10px)',
         _hover: {
-          bg: mode(whiten('light.secondary', 90), darken('dark.secondary', 10))(props),
+          bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
+        }
+      }),
+      rounded:(props) => ({
+        //bg: mode('light.secondary', 'dark.secondary')(props),
+        border:mode('solid 2px #00000015', 'solid 2px #ffffff15')(props), 
+        fontWeight:'400',
+        borderRadius:'10px',
+        backdropFilter:'blur(10px)',
+        _hover: {
+          bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
         }
       }),
       header:(props) => ({
