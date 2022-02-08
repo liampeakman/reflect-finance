@@ -27,7 +27,7 @@ const { colorMode, toggleColorMode } = useColorMode();
           display={{base:'none', lg:'unset'}} 
           >
             <ActiveLink href="/">Home</ActiveLink>
-            {/* <ActiveLink href="/">App</ActiveLink> */}
+            <ActiveLink href="/app/dashboard">App</ActiveLink>
             <Button as='a' rightIcon={<HiOutlineExternalLink/>} variant='header' href="/" target='_blank'>
              Buy
             </Button>

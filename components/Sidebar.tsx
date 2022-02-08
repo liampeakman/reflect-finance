@@ -76,7 +76,7 @@ const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
           {/* <Text color='white' fontSize='xl' textAlign='center'>⛓️💯♻️</Text> */}
         </Stack>
         <Stack width='100%' spacing={3}>
-          <ActiveDashLink href='/dashboard' icon={<FaSlidersH />}>
+          <ActiveDashLink href='/app/dashboard' icon={<FaSlidersH />}>
             Dashboard
           </ActiveDashLink>
           <ActiveDashLink href='/treasury' icon={<FaBalanceScaleLeft />}>

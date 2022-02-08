@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip);
 
 const Holdings = ({ data }) => {
 
-    const assets = [(data.avaxData.wallet.products[0].assets), (data.ethData.wallet.products[0].assets),(data.bscData.wallet.products[0].assets)]
+    const assets = [(data.avaxData.wallet.products[0].assets), (data.ethData.wallet.products[0].assets),(data.ftmData.wallet.products[0].assets)]
 
     // Sort into object
     let objectList = []
@@ -43,6 +43,9 @@ const Holdings = ({ data }) => {
       'rgba(75, 192, 192, 0.2)',
       'rgba(153, 102, 255, 0.2)',
       'rgba(255, 159, 64, 0.2)',
+      'rgba(175, 32, 122, 0.2)',
+      'rgba(53, 142, 115, 0.2)',
+      'rgba(125, 19, 14, 0.2)',
     ]
 
     const borderColors = [
@@ -52,11 +55,14 @@ const Holdings = ({ data }) => {
       'rgba(75, 192, 192, 1)',
       'rgba(153, 102, 255, 1)',
       'rgba(255, 159, 64, 1)',
+      'rgba(175, 32, 122, 1)',
+      'rgba(53, 142, 115, 1)',
+      'rgba(125, 19, 14, 1)',
     ]
 
     let customLabels = []
     
-    for (let i = 0; i < tokenLabels.length; i++) {
+    for (let i = 0; i < 6; i++) {
       customLabels.push(
         <Stack direction='row' spacing={2} align='center'>
           <Box w={3} h={3} bg={bgColors[i]} border={'solid 1px ' + borderColors[i]}></Box>

@@ -30,6 +30,7 @@ const styles: Styles = {
       fontWeight:'300',
       fontStyle:'normal',
       minWidth:'300px',
+      fontSize:'14px',
       _before: {
         content: '""',
         position: "absolute",
@@ -42,6 +43,9 @@ const styles: Styles = {
         background: "url(https://grainy-gradients.vercel.app/noise.svg)"
       },      
     },
+    p: {
+      fontSize:'14px',
+    },
     h1: {
       fontFamily:'pragmatica-extended !important',
     },
@@ -50,6 +54,7 @@ const styles: Styles = {
     },
     a:{
       color:mode('#000 !important', '#fff !important')(props),
+      fontSize:'14px !important',
       _hover: {
         textDecoration:'none'
       }
@@ -119,16 +124,18 @@ const components = {
         }
       }),
       activeDash:(props) => ({
-        bg: mode('light.accent', 'dark.accent')(props),
-        color:mode('#000', '#fff')(props),
+        bg: mode(whiten('light.secondary', 90), 'rgba(255, 255, 255, 0.05)')(props),
         borderRadius:'0',
+        color:mode('#000', '#fff')(props),
         fontWeight:'400',
         justifyContent:"flex-start",
         padding:"0 15%",
-        _hover: {
-          bg: mode(darken('light.secondary', 10), darken('dark.secondary', 10))(props),
-          transition: '0.3s ease'
-        }
+        // border:'solid 1px rgba(51, 45, 45, 1)',
+        a: {
+          _hover: {
+            textDecoration:'none'
+          }
+        }      
       }),
       external:(props) => ({
         bg: 'none',

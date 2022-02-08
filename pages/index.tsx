@@ -52,27 +52,16 @@ const Index = () => {
       <Center padding={10} textAlign={{base:'left', sm:'center'}} height='calc(100% - 200px)' minH='200px'>
         <Stack spacing={5} justify='center' align={{base:'left', sm:'center'}}>
         <Heading as='h1' fontSize={{base:'5xl', md:'6xl'}} lineHeight={{base:'3rem', md:'4rem'}}>
-          We <Text display='inline-block' background='-webkit-linear-gradient(180deg,#eed389, #c96161, #3e4eda, #61c980, #871aec)' backgroundSize='400% 400%' backgroundClip='text' textShadow='0 0 40px rgb(255 255 255 / 20%)' animation={animation}>reflect</Text> profits back to you.
+          We <Text fontSize='inherit' display='inline-block' background='-webkit-linear-gradient(180deg,#eed389, #c96161, #3e4eda, #61c980, #871aec)' backgroundSize='400% 400%' backgroundClip='text' textShadow='0 0 40px rgb(255 255 255 / 20%)' animation={animation}>reflect</Text> profits back to you.
         </Heading>
         <Text maxW='50ch' margin='auto' >
           $RFLCT is a deflationary cross-chain FaaS aggregator that combines multiple investments into one easy-to-use protocol. 
         </Text>
 
         <Stack direction='row'>
-        <Button position='relative' variant='secondary' w='130px' h='40px' overflow='hidden' 
-            _hover={{
-              "& :nth-child(2)": {
-               bottom:'10px',
-               transition: 'bottom 0.3s ease'
-              }, 
-              "& :nth-child(1)": {
-                top: '-30px',
-                transition: 'top 0.3s ease'
-               },
-            }}>
+        <Button as='a' href='/app/dashboard' position='relative' variant='secondary' w='130px' h='40px'>
               <Text position='absolute' top='10px' transition='0.3s ease'>Dashboard</Text>
-              <Text position='absolute' bottom='-30px' transition='0.3s ease'>Coming Soon</Text>
-            </Button>
+        </Button>
             <Button position='relative' variant='secondary' w='130px' h='40px' overflow='hidden' 
             _hover={{
               "& :nth-child(2)": {
@@ -96,7 +85,7 @@ const Index = () => {
       top={'40%'}
       right={0}
       margin='auto'
-      filter='blur(40px)'
+      filter='blur(100px)'
       boxShadow='100px 100px 200px 40px rgba(255, 99, 132), -100px 100px 200px 40px rgba(54, 162, 235), -100px -100px 200px 30px rgba(75, 192, 192), 100px -100px 200px 40px rgba(153, 102, 255)'
       width='30%'
       zIndex={-1}
@@ -108,7 +97,7 @@ const Index = () => {
       left={0}
       margin='auto'
       filter='blur(150px)'
-      boxShadow='100px 100px 300px 40px rgba(255, 99, 132), -100px 100px 300px 40px rgba(54, 162, 235), -100px -100px 300px 40px rgba(255, 206, 86), 100px -100px 300px 40px rgba(153, 102, 255)'
+      boxShadow='100px 100px 200px 40px rgba(255, 99, 132), -100px 100px 200px 40px rgba(54, 162, 235), -100px -100px 200px 30px rgba(75, 192, 192), 100px -100px 200px 40px rgba(153, 102, 255)'
       width='30%'
       zIndex={-1}
       >
