@@ -1,12 +1,13 @@
 import { Button, Heading, Image, Stack, Text, WrapItem, useColorModeValue } from "@chakra-ui/react"
 import { HiOutlineExternalLink } from "react-icons/hi";
+import HoldingsChart from "./HoldingsChart";
 
 const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
   
 
-const Holdings = ({ data, wallet, holdings}) => {
+const Deposits = ({ data, wallet, holdings}) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
@@ -14,12 +15,24 @@ const Holdings = ({ data, wallet, holdings}) => {
     // Tokens in wallet
     const tokens = []
     data.map((index) => {
-      const arr = index.wallet.products[0].assets
-      tokens.push(...arr)
+        for (let i = 0; i < index.wallet.products.length; i++) {
+            let addToken = true
+            const arr = index.wallet.products[i].assets
+            // Check if > $100 
+            for (let i = 0; i < arr.length; i++){
+                if (arr[i].balanceUSD < 100){
+                    addToken = false
+                }
+            } 
+            if(addToken){
+                tokens.push(...arr)
+            } 
+        }
     })
 
     // Sort tokens by price
     tokens.sort((a, b) => parseFloat(b.balanceUSD) - parseFloat(a.balanceUSD))
+
 
     let holdingsList = []
 
@@ -64,7 +77,7 @@ const Holdings = ({ data, wallet, holdings}) => {
             
             > 
                 <Stack direction='row' spacing={0} align='center' paddingBottom={3}>
-                    <Heading size='lg'>Holdings </Heading>
+                    <Heading size='lg'>Deposits </Heading>
                 </Stack>
                 <Stack
                 maxHeight='300px'     
@@ -105,5 +118,5 @@ const Holdings = ({ data, wallet, holdings}) => {
     )
 }
 
-export default Holdings
+export default Deposits
 

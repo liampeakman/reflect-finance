@@ -9,7 +9,8 @@ const Sidebar = ({isOpen}) => {
 
 const { colorMode } = useColorMode();
 
-const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
+  const bg = useColorModeValue('light.background', 'dark.background')
+  const border = useColorModeValue('lightBorder', 'darkBorder')
 
 
   return (
@@ -17,9 +18,8 @@ const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
       transform={{base:isOpen ? 'translateX(0%)':'translateX(-100%)', md:'translateX(0%)'}}
       background={bg}
       backdropFilter='blur(7px)'
-      border='1px solid rgba(255, 255, 255, 0.125)'
+      border={border}
       zIndex='5'
-      overflow-y='scroll' 
       direction='column' 
       top={0} 
       bottom={0} 
@@ -29,7 +29,6 @@ const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
       pos='fixed' 
       w='225px'
       paddingLeft='8px'
-      //backgroundClip='text' 
       css={{
         
         '&::-webkit-scrollbar': {
@@ -53,7 +52,6 @@ const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
       }}
       transition='color .3s ease, transform .6s ease, fill 1.5s ease'
       fill='rgba(255, 255, 255, 1)'
-      // stroke='rgba(109, 127, 163, 0.5)'
       color='rgba(0,0,0,0)'
       _hover={{
         color: 'rgba(255,255,255,0.3)',
@@ -72,8 +70,6 @@ const bg = useColorModeValue('rgba(177, 177, 177, 0.25)', 'rgba(0, 0, 0, 0.05)')
           <Image src={colorMode === 'light' ? '../logo_dark.svg': 
         '../logo_light.svg'}></Image>
 
-          
-          {/* <Text color='white' fontSize='xl' textAlign='center'>⛓️💯♻️</Text> */}
         </Stack>
         <Stack width='100%' spacing={3}>
           <ActiveDashLink href='/app/dashboard' icon={<FaSlidersH />}>

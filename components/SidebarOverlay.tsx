@@ -8,7 +8,7 @@ const SidebarOverlay = ({isOpen, onClick}) => {
   return (
     <Box 
       display={{base: isOpen ? 'unset' : 'none', md:'none'}} 
-      bg='blackAlpha.500' 
+      bg='blackAlpha.300' 
       width='100vw'
       height='100vh' 
       position='absolute' 

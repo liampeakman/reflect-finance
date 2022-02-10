@@ -1,29 +1,32 @@
-import { extendTheme, textDecoration } from '@chakra-ui/react';
+import { extendTheme, textDecoration, useColorModeValue } from '@chakra-ui/react';
 import type { GlobalStyleProps, Styles } from '@chakra-ui/theme-tools';
 import { mode ,darken, whiten } from '@chakra-ui/theme-tools';
+
 
 // setup colors
 const colors = {
   light: {
-    primary: '#fff',
-    secondary:'#2E2C3B',
-    accent:'#5145BA'
+    primary: '#000',
+    background: 'rgba(252, 252, 252, 0.75)',
+    hover:'rgba(255, 255, 255, 0.35)',
   },
   dark: {
-    primary: '#090719',
-    secondary:'#2E2C3B',
-    accent:'#5145BA'
+    primary: '#fff',
+    background:'rgba(0, 0, 0, 0.10)',
+    hover:'rgba(0, 0, 0, 0.25)',
   }
-  
 }
 
-// setup light/dark mode global defaults
+const borders = {
+  lightBorder:'solid 2px rgba(146, 146, 146, 0.1)',
+  darkBorder: 'solid 2px rgba(255, 255, 255, 0.05)'
+}
+
 const styles: Styles = {
   global: (props) => ({
     body: {
-      color: mode('gray.800 !important', '#fff !important')(props),
-      backgroundImage: mode('linear-gradient(#ffffff, #ffffff)', 'linear-gradient(#000, #000)')(props),
-      
+      color: mode('#000 !important', '#fff !important')(props),
+      backgroundImage: mode('linear-gradient(#f4f4f4, #f4f4f4)', 'linear-gradient(#000, #000)')(props),
       backgroundColor: mode('light.primary !important', '#000 !important')(props),
       transition: 'background-color 3.5s ease, background-image 3.5s ease',
       fontFamily:'pragmatica-extended',
@@ -66,7 +69,7 @@ const components = {
   Link :{
     variants:{
       default:(props) => ({
-        color: mode('gray.800', 'whiteAlpha.900')(props),
+        color: mode('light.primary', 'dark.primary')(props),
         opacity:"20%",
         _hover: {
           textDecoration:'none',
@@ -76,7 +79,7 @@ const components = {
         
       }),
       active:(props) => ({
-        color:mode('gray.800', 'whiteAlpha.900')(props),
+        color:mode('light.primary', 'dark.primary')(props),
         _hover: {
           textDecoration:'none'
         },
@@ -86,35 +89,26 @@ const components = {
 
   Button: {
     variants: {
-      primary:(props) => ({
-        bg: mode('light.accent', 'dark.accent')(props),
-        boxShadow: '0 0 20px rgb(82 61 241 / 60%)',
-        color:"white",
-        fontWeight:'400',
-        _hover: {
-          bg: mode(darken('light.accent', 10), darken('dark.accent', 10))(props)
-        },
-      }),
       secondary:(props) => ({
-        bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
-        color:mode('#000', '#fff')(props),
+        bg: mode('light.background', 'dark.background')(props),
+        color:mode('light.primary', 'dark.primary')(props),
         fontWeight:'400',
         backdropFilter:'blur(1px)',
-        border:'1px solid rgba(255, 255, 255, 0.125)',
+        border:mode('lightBorder', 'darkBorder')(props),
         borderRadius:0,
         _hover: {
-          bg: mode(darken('light.secondary', 10), darken('dark.secondary', 10))(props),
+          bg: mode('light.hover', 'dark.hover')(props),
         }
       }),
       defaultDash:(props) => ({
         bg: 'none',
-        color:mode('#000', '#fff')(props),
+        color:mode('light.primary', 'dark.primary')(props),
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",
         padding:"0 15%",
         _hover: {
-          bg: mode(whiten('light.secondary', 90), 'rgba(255, 255, 255, 0.05)')(props),
+          bg: mode('light.hover', 'dark.hover')(props),
           transition: '0.3s ease'
         },
         a: {
@@ -124,13 +118,12 @@ const components = {
         }
       }),
       activeDash:(props) => ({
-        bg: mode(whiten('light.secondary', 90), 'rgba(255, 255, 255, 0.05)')(props),
+        bg: mode('light.background', 'dark.background')(props),
+        color:mode('light.primary', 'dark.primary')(props),
         borderRadius:'0',
-        color:mode('#000', '#fff')(props),
         fontWeight:'400',
         justifyContent:"flex-start",
         padding:"0 15%",
-        // border:'solid 1px rgba(51, 45, 45, 1)',
         a: {
           _hover: {
             textDecoration:'none'
@@ -139,39 +132,38 @@ const components = {
       }),
       external:(props) => ({
         bg: 'none',
-        color:mode('#000', '#fff')(props),
+        color:mode('light.primary', 'dark.primary')(props),
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",
         padding:"0 15%",
         height:'8',
         _hover: {
-          color: mode(darken('white', 40), darken('white', 40))(props),
+          color:mode('light.hover', 'dark.hover')(props),
         }
       }),
+
       circle:(props) => ({
-        //bg: mode('light.secondary', 'dark.secondary')(props),
-        border:mode('solid 2px #00000015', 'solid 2px #ffffff15')(props), 
+        border:mode('lightBorder', 'darkBorder')(props), 
         fontWeight:'400',
         borderRadius:'900',
         backdropFilter:'blur(10px)',
         _hover: {
-          bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
+          bg: mode('light.hover', 'dark.hover')(props),
         }
       }),
       rounded:(props) => ({
-        //bg: mode('light.secondary', 'dark.secondary')(props),
-        border:mode('solid 2px #00000015', 'solid 2px #ffffff15')(props), 
+        border:mode('lightBorder', 'darkBorder')(props), 
         fontWeight:'400',
         borderRadius:'10px',
         backdropFilter:'blur(10px)',
         _hover: {
-          bg: mode('rgba(255, 255, 255, 0.45)', 'rgba(0, 0, 0, 0.05)')(props),
+          bg: mode('light.hover', 'dark.hover')(props),
         }
       }),
       header:(props) => ({
         bg: 'none',
-        color: mode('gray.800', 'whiteAlpha.900')(props),
+        color: mode('light.primary', 'dark.primary')(props),
         fontWeight:'400',
         opacity:"20%",
         padding:0,
@@ -190,6 +182,7 @@ const config = {
 
 export const theme = extendTheme({
   colors,
+  borders,
   components,
   styles,
   config
