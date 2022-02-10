@@ -7,17 +7,17 @@ const numberWithCommas = (x) => {
 }
   
 
-const Deposits = ({ data, wallet, holdings}) => {
+const Deposits = ({ wallet, depositData }) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
 
     // Tokens in wallet
     const tokens = []
-    data.map((index) => {
-        for (let i = 0; i < index.wallet.products.length; i++) {
+    depositData.map((index) => {
+        for (let i = 0; i < index[wallet].products.length; i++) {
             let addToken = true
-            const arr = index.wallet.products[i].assets
+            const arr = index[wallet].products[i].assets
             // Check if > $100 
             for (let i = 0; i < arr.length; i++){
                 if (arr[i].balanceUSD < 100){
@@ -62,7 +62,7 @@ const Deposits = ({ data, wallet, holdings}) => {
     }
     
 
-    if (!data) return <div>loading...</div>
+    if (!depositData) return <div>loading...</div>
     return (
         <WrapItem 
         flexGrow={1} 

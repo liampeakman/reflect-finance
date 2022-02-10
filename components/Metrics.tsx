@@ -11,8 +11,6 @@ const Metrics = ({liquidityData, tokenData}) => {
 
     if (tokenData && liquidityData) {
 
-    console.log(tokenData.holdersCount)
-
     const currentPrice = tokenData.price.rate.toFixed(6)
     const priceDiff = tokenData.price.diff.toFixed(2)
     const volume = numberWithCommas(tokenData.price.volume24h.toFixed(0))

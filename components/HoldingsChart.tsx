@@ -3,7 +3,7 @@ import { Pie, PieChart, Tooltip, Cell, ResponsiveContainer } from "recharts"
 import CustomTooltipHoldings from "./CustomTooltipHoldings";
 
 
-const HoldingsChart = ({ walletData, depositData }) => {
+const HoldingsChart = ({ wallet, walletData, depositData }) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
@@ -13,19 +13,17 @@ const HoldingsChart = ({ walletData, depositData }) => {
     // Tokens in wallet
     const tokenAssets = []
     newData.map((index) => {
-        for (let i = 0; i < index.wallet.products.length; i++) {
-            const arr = index.wallet.products[i].assets
+        for (let i = 0; i < index[wallet].products.length; i++) {
+            const arr = index[wallet].products[i].assets
             tokenAssets.push(...arr) 
         }
     })
-    console.log(tokenAssets)
 
 
     const tokens = []
     tokenAssets.map((index) => {
       tokens.push(index.tokens[0])
     })
-    console.log(tokens)
 
     // Sort list of tokens from highest value down    
     tokens.sort((a, b) => parseFloat(b.balanceUSD) - parseFloat(a.balanceUSD))
@@ -75,8 +73,6 @@ const HoldingsChart = ({ walletData, depositData }) => {
         </Stack>
       );
     }
-
-    // console.log(tokenList)
 
     
     if (!depositData) return <div>loading...</div>

@@ -16,7 +16,8 @@ import HoldingsChart from "../../components/HoldingsChart";
 import Holdings from "../../components/Holdings";
 import Deposits from "../../components/Deposits";
 
-const wallet = '0x4Cb93EB88cFC55F364e9300254003d34c28cAc9D'
+
+const wallet = '0x4cb93eb88cfc55f364e9300254003d34c28cac9d'
 const  holdings = [
   {
     wallet:
@@ -65,9 +66,6 @@ const  holdings = [
   }
 ]
 
-
-
-
 const Dashboard = ({priceHistoryData, liquidityData, tokenData, walletData, depositData}) => {
   const [openSidebar, setOpenSidebar] = useControllableState({ defaultValue: false })
   const toggleSidebar = () =>{
@@ -87,14 +85,11 @@ const Dashboard = ({priceHistoryData, liquidityData, tokenData, walletData, depo
       <Wrap padding={{base:'0 40px', md:' 0 40px 0 250px'}}transition='padding-left 0.6s ease' justify='space-between' spacing={10} >
         
         <Metrics tokenData={tokenData} liquidityData={liquidityData}/>
-        <Treasury liquidityData={liquidityData} walletData={walletData} depositData={depositData} />
-        
-        <Holdings data={walletData} wallet={wallet} holdings={holdings}/>
-        <Deposits data={depositData} wallet={wallet} holdings={holdings}/>
-        <HoldingsChart walletData={walletData} depositData={depositData} />
-        <Wallets data={walletData} wallet={wallet} holdings={holdings}/>
-        
-
+        <Treasury wallet={wallet} liquidityData={liquidityData} walletData={walletData} depositData={depositData} />
+        <Holdings wallet={wallet} walletData={walletData}/>
+        <Deposits wallet={wallet} depositData={depositData} />
+        <HoldingsChart wallet={wallet} walletData={walletData} depositData={depositData} />
+        <Wallets wallet={wallet} walletData={walletData} holdings={holdings}/>
         {/* <Reflections data={walletData} volume={volume}/> */}
         {/* <Buybacks data={walletData}/>
         <Supply data={walletData}/> */}
@@ -132,22 +127,22 @@ export default Dashboard
 
 
 const fetchAll = async (arr) => {
-  const res = await Promise.all(arr.map(i => fetch(`https://api.zapper.fi/v1/protocols/${i.appID}/balances?addresses[0]=${wallet}&network=${i.network}&newBalances=true&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`)))
-  const resRaw = await Promise.all(res.map(r => r.text()))
-  const resNew = resRaw.map(r => r.replace(/0x4cb93eb88cfc55f364e9300254003d34c28cac9d/, 'wallet' ))
-  const data = await Promise.all(resNew.map(r => JSON.parse(r)))
-  return(data)
+
+  const json = await Promise.all(arr.map(async i => {
+    const res = await fetch(`https://api.zapper.fi/v1/protocols/${i.appID}/balances?addresses[0]=${wallet}&network=${i.network}&newBalances=true&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`);
+    return res.json();
+  }));
+
+  return(json)
 }
-
-
 
 export const getServerSideProps = async (context) => {
 
   const tokenRes = await fetch(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=freekey`)
   const tokenData = await tokenRes.json()
 
-  const walletData = await fetchAll(holdings[0].wallet)
-
+  const walletData= await fetchAll(holdings[0].wallet)
+  
   const depositData = await fetchAll(holdings[1].deposits)
 
   const priceHistoryRes = await fetch ('https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/1/USD/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F/?quote-currency=USD&format=JSON&from=2021-01-08&to=2023-02-09&page-size=10&page-number=0&prices-at-asc=true&key=ckey_d85e9446901d4e82b6f66b7d183')

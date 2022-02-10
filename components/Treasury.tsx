@@ -6,7 +6,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const Treasury = ({liquidityData, walletData, depositData}) => {
+const Treasury = ({wallet, liquidityData, walletData, depositData}) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
@@ -20,8 +20,8 @@ const Treasury = ({liquidityData, walletData, depositData}) => {
     // Tokens in wallet
     const walletTokens = []
     walletData.map((index) => {
-        for (let i = 0; i < index.wallet.products.length; i++) {
-            const arr = index.wallet.products[i].assets
+        for (let i = 0; i < index[wallet].products.length; i++) {
+            const arr = index[wallet].products[i].assets
             walletTokens.push(...arr) 
         }
     })
@@ -35,8 +35,8 @@ const Treasury = ({liquidityData, walletData, depositData}) => {
     // Tokens deposited
     const depositTokens = []
     depositData.map((index) => {
-        for (let i = 0; i < index.wallet.products.length; i++) {
-            const arr = index.wallet.products[i].assets
+        for (let i = 0; i < index[wallet].products.length; i++) {
+            const arr = index[wallet].products[i].assets
             depositTokens.push(...arr) 
         }
     })

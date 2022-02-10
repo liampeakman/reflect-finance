@@ -6,15 +6,15 @@ const numberWithCommas = (x) => {
 }
   
 
-const Holdings = ({ data, wallet, holdings}) => {
+const Holdings = ({ wallet, walletData}) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
 
     // Tokens in wallet
     const tokens = []
-    data.map((index) => {
-      const arr = index.wallet.products[0].assets
+    walletData.map((index) => {
+      const arr = index[wallet].products[0].assets
       tokens.push(...arr)
     })
 
@@ -49,7 +49,7 @@ const Holdings = ({ data, wallet, holdings}) => {
     }
     
 
-    if (!data) return <div>loading...</div>
+    if (!walletData) return <div>loading...</div>
     return (
         <WrapItem 
         flexGrow={1} 
