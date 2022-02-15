@@ -15,6 +15,8 @@ import PriceChart from "../../components/PriceChart";
 import HoldingsChart from "../../components/HoldingsChart";
 import Holdings from "../../components/Holdings";
 import Deposits from "../../components/Deposits";
+import { useEffect } from "react";
+import useSWR from 'swr';
 
 
 const wallet = '0x4cb93eb88cfc55f364e9300254003d34c28cac9d'
@@ -66,11 +68,38 @@ const  holdings = [
   }
 ]
 
-const Dashboard = ({priceHistoryData, liquidityData, tokenData, walletData, depositData}) => {
+async function fetchAll(arr) {
+  const json = await Promise.all(arr.map(async i => {
+    const res = await fetch(`https://api.zapper.fi/v1/protocols/${i.appID}/balances?addresses[0]=${wallet}&network=${i.network}&newBalances=true&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`)
+    return res.json()
+  }))
+
+  return json
+}
+
+async function fetcher(url) {
+  const res = await fetch(url);
+  const json = await res.json();
+  return json;
+}
+
+const Dashboard = ({ walletData, depositData } ) => {
+
   const [openSidebar, setOpenSidebar] = useControllableState({ defaultValue: false })
   const toggleSidebar = () =>{
     openSidebar ? setOpenSidebar(false) : setOpenSidebar(true)
   }
+
+  const { data: tokenData, error: tokenError } = useSWR(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=freekey`, fetcher)
+
+  const { data: priceHistoryData, error: priceHistoryError } = useSWR(`https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/1/USD/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F/?quote-currency=USD&format=JSON&from=2021-01-08&to=2023-02-09&page-size=10&page-number=0&prices-at-asc=true&key=ckey_d85e9446901d4e82b6f66b7d183`, fetcher)
+
+  const { data: liquidityData, error: liquidityError } = useSWR(  `https://api.zapper.fi/v1/protocols/uniswap-v2/balances?addresses%5B%5D=${wallet}&network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`, fetcher)
+
+  // const { data: walletData, error: walletError } = useSWR( holdings[0].wallet, fetchAll)
+
+  // const { data: depositData, error: depositError } = useSWR( holdings[1].deposits, fetchAll)
+
   
   return (
     <Box position='relative'>
@@ -84,14 +113,15 @@ const Dashboard = ({priceHistoryData, liquidityData, tokenData, walletData, depo
       
       <Wrap padding={{base:'0 40px', md:' 0 40px 0 250px'}}transition='padding-left 0.6s ease' justify='space-between' spacing={10} >
         
-        <Metrics tokenData={tokenData} liquidityData={liquidityData}/>
+        {/* <Metrics wallet={wallet} tokenData={tokenData} liquidityData={liquidityData}/>    */}
         <Treasury wallet={wallet} liquidityData={liquidityData} walletData={walletData} depositData={depositData} />
+        
         <Holdings wallet={wallet} walletData={walletData}/>
         <Deposits wallet={wallet} depositData={depositData} />
         <HoldingsChart wallet={wallet} walletData={walletData} depositData={depositData} />
         <Wallets wallet={wallet} walletData={walletData} holdings={holdings}/>
-        {/* <Reflections data={walletData} volume={volume}/> */}
-        {/* <Buybacks data={walletData}/>
+        {/* <Reflections data={walletData} volume={volume}/> 
+        <Buybacks data={walletData}/>
         <Supply data={walletData}/> */}
         <PriceChart data={priceHistoryData}/>
       </Wrap>
@@ -126,33 +156,25 @@ export default Dashboard
 
 
 
-const fetchAll = async (arr) => {
 
-  const json = await Promise.all(arr.map(async i => {
-    const res = await fetch(`https://api.zapper.fi/v1/protocols/${i.appID}/balances?addresses[0]=${wallet}&network=${i.network}&newBalances=true&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`);
-    return res.json();
-  }));
-
-  return(json)
-}
 
 export const getServerSideProps = async (context) => {
 
-  const tokenRes = await fetch(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=freekey`)
-  const tokenData = await tokenRes.json()
+  // const tokenRes = await fetch(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=freekey`)
+  // const tokenData = await tokenRes.json()
 
   const walletData= await fetchAll(holdings[0].wallet)
   
   const depositData = await fetchAll(holdings[1].deposits)
 
-  const priceHistoryRes = await fetch ('https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/1/USD/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F/?quote-currency=USD&format=JSON&from=2021-01-08&to=2023-02-09&page-size=10&page-number=0&prices-at-asc=true&key=ckey_d85e9446901d4e82b6f66b7d183')
-  const priceHistoryData = await priceHistoryRes.json()
+  // const priceHistoryRes = await fetch ('https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/1/USD/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F/?quote-currency=USD&format=JSON&from=2021-01-08&to=2023-02-09&page-size=10&page-number=0&prices-at-asc=true&key=ckey_d85e9446901d4e82b6f66b7d183')
+  // const priceHistoryData = await priceHistoryRes.json()
 
-  const liquidityRes = await fetch (`https://api.zapper.fi/v1/protocols/uniswap-v2/balances?addresses%5B%5D=${wallet}&network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`)
-  const liquidityRaw = await liquidityRes.text()
-  const liquidityNew =  liquidityRaw.replace(/0x4cb93eb88cfc55f364e9300254003d34c28cac9d/, 'wallet' )
-  const liquidityData = await JSON.parse(liquidityNew)
+  // const liquidityRes = await fetch (`https://api.zapper.fi/v1/protocols/uniswap-v2/balances?addresses%5B%5D=${wallet}&network=ethereum&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`)
+  // const liquidityRaw = await liquidityRes.text()
+  // const liquidityNew =  liquidityRaw.replace(/0x4cb93eb88cfc55f364e9300254003d34c28cac9d/, 'wallet' )
+  // const liquidityData = await JSON.parse(liquidityNew)
 
 
-  return { props: { priceHistoryData, liquidityData, tokenData, walletData, depositData } }
+  return { props: { walletData, depositData } }
 }

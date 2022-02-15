@@ -66,9 +66,10 @@ const { colorMode } = useColorMode();
         maxW='100px'
         marginTop='18px'
         >
-          
-          <Image src={colorMode === 'light' ? '../logo_dark.svg': 
+          <Link href='/'>
+            <Image src={colorMode === 'light' ? '../logo_dark.svg': 
         '../logo_light.svg'}></Image>
+          </Link>
 
         </Stack>
         <Stack width='100%' spacing={3}>

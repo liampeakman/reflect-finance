@@ -1,5 +1,6 @@
 import {Box, Center, Heading, Text, keyframes, Button, usePrefersReducedMotion, Stack, useColorMode, Image} from "@chakra-ui/react";
 import Head from "next/head";
+import Link from "next/link";
 import Header from "../components/Header";
 
 const backgroundChange = keyframes `	
@@ -59,9 +60,12 @@ const Index = () => {
         </Text>
 
         <Stack direction='row'>
-        <Button as='a' href='/app/dashboard' position='relative' variant='secondary' w='130px' h='40px'>
-              <Text position='absolute' top='10px' transition='0.3s ease'>Dashboard</Text>
-        </Button>
+        <Link href='app/dashboard'>
+          
+          <Button position='relative' variant='secondary' w='130px' h='40px'>
+                <Text position='absolute' top='10px' transition='0.3s ease'>Dashboard</Text>
+          </Button>
+        </Link>
             <Button position='relative' variant='secondary' w='130px' h='40px' overflow='hidden' 
             _hover={{
               "& :nth-child(2)": {

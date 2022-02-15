@@ -3,6 +3,8 @@ import { theme } from '../theme'
 import Router from 'next/router'
 import { useState } from 'react'
 import PageLoader from '../components/PageLoader'
+import NextNProgress from 'nextjs-progressbar';
+
 
 
 
@@ -20,6 +22,9 @@ const App = ({ Component, pageProps }) => {
     return (
        
         <ChakraProvider resetCSS theme={theme}>
+            <NextNProgress 
+            color="rgb(54 162 235)"
+            />
             <Component {...pageProps} />
         </ChakraProvider>
       
