@@ -109,17 +109,32 @@ const components = {
         padding:"0 15%",
         _hover: {
           bg: mode('light.hover', 'dark.hover')(props),
-          transition: '0.3s ease'
+          _after: {
+            position:'absolute',
+            right:0,
+            content: '"coming soon"',
+            fontSize:'0.5rem',
+            backdropFilter:'blur(10px)',
+            padding:'0.3rem',
+            borderRadius:'1rem',
+            color:mode('light.primary', 'dark.primary')(props),
+            marginLeft:'1rem',
+            border:mode('lightBorder', 'darkBorder')(props), 
+  
+          }
         },
         a: {
           _hover: {
             textDecoration:'none'
+            
           }
-        }
+        },
+        
       }),
       activeDash:(props) => ({
         bg: mode('light.background', 'dark.background')(props),
         color:mode('light.primary', 'dark.primary')(props),
+        transition:'none',
         borderRadius:'0',
         fontWeight:'400',
         justifyContent:"flex-start",

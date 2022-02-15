@@ -76,19 +76,19 @@ const { colorMode } = useColorMode();
           <ActiveDashLink href='/app/dashboard' icon={<FaSlidersH />}>
             Dashboard
           </ActiveDashLink>
-          <ActiveDashLink href='/treasury' icon={<FaBalanceScaleLeft />}>
+          <ActiveDashLink href='' icon={<FaBalanceScaleLeft />}>
             Treasury
           </ActiveDashLink>
-          <ActiveDashLink href='/buybacks' icon={<FaCompressArrowsAlt />}>
+          <ActiveDashLink href='' icon={<FaCompressArrowsAlt />}>
             Buybacks
           </ActiveDashLink>
-          <ActiveDashLink href='/burns' icon={<AiFillFire />}>
+          <ActiveDashLink href='' icon={<AiFillFire />}>
             Burns
           </ActiveDashLink>
-          <ActiveDashLink href='/profile' icon={<FaUserAlt />}>
+          <ActiveDashLink href='' icon={<FaUserAlt />}>
             Profile
           </ActiveDashLink>
-          <ActiveDashLink href='/calculator' icon={<FaCalculator />}>
+          <ActiveDashLink href='' icon={<FaCalculator />}>
             Calculator
           </ActiveDashLink>
         </Stack>
