@@ -86,7 +86,7 @@ const HoldingsChart = ({ wallet, walletData, depositData }) => {
         >
         <Stack direction='column' width='100%' >
             <Heading size='lg'>Distribution</Heading>
-              <Stack direction={{base:'column', md:'row'}}  borderRadius='10' justify='center' minW='300px'>
+              <Stack direction={{base:'column', md:'row'}}  borderRadius='10' justify='center' minW='100px'>
                 <Stack justify='center' padding={3} width='100%'
                 maxW='280px'  >
                   <ResponsiveContainer height={200} >
