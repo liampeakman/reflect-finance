@@ -46,7 +46,7 @@ const Metrics = ({wallet, liquidityData, tokenData}) => {
                     <Stack direction='column' spacing={0.2}>
                         <Text fontSize='sm'>Current Price</Text>
                         <Text fontSize='x-large' fontWeight='600' fontFamily='DM Sans'>${currentPrice}</Text>
-                        <Text fontFamily='DM Sans' color={priceDiff.toString().includes('-')? 'red': 'green'}>{priceDiff}%</Text>
+                        <Text fontFamily='DM Sans' color={priceDiff.toString().includes('-')? 'red': 'green'}>{priceDiff.toString().includes('-')? '': '+'}{priceDiff}%</Text>
                     </Stack>
                 </Stack>
             </WrapItem>
@@ -72,7 +72,7 @@ const Metrics = ({wallet, liquidityData, tokenData}) => {
                     <Stack direction='column' spacing={0.2}>
                         <Text fontSize='sm'>Volume (24hr)</Text>
                         <Text fontSize='x-large' fontWeight='600' fontFamily='DM Sans'>${volume}</Text>
-                        <Text fontFamily='DM Sans' color={volumeDiff.toString().includes('-')? 'red': 'green'}>{volumeDiff}%</Text>
+                        <Text fontFamily='DM Sans' color={volumeDiff.toString().includes('-')? 'red': 'green'}>{volumeDiff.toString().includes('-')? '': '+'}{volumeDiff}%</Text>
                     </Stack>
                 </Stack>
             </WrapItem>

@@ -90,7 +90,7 @@ const Dashboard = ({ walletData, depositData } ) => {
     openSidebar ? setOpenSidebar(false) : setOpenSidebar(true)
   }
 
-  const { data: tokenData, error: tokenError } = useSWR(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=freekey`, fetcher)
+  const { data: tokenData, error: tokenError } = useSWR(`https://api.ethplorer.io/getTokenInfo/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F?apiKey=EK-3qKHS-yrezwSu-GmGh3`, fetcher)
 
   const { data: priceHistoryData, error: priceHistoryError } = useSWR(`https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/1/USD/0xA808B22ffd2c472aD1278088F16D4010E6a54D5F/?quote-currency=USD&format=JSON&from=2021-01-08&to=2023-02-09&page-size=10&page-number=0&prices-at-asc=true&key=ckey_d85e9446901d4e82b6f66b7d183`, fetcher)
 
