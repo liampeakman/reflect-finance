@@ -12,7 +12,7 @@ const PriceChart = ({ data }) => {
     if (data) {
         const [priceChartLength, setPriceChartLength] = useState(-30)
 
-        const graphData = data.data.prices[0].prices.slice(priceChartLength)
+        const graphData = data.data[0].prices.slice(priceChartLength)
     
         // Change date format 
         for (let i = 0; i < graphData.length; i++) {

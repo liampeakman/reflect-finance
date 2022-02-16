@@ -113,7 +113,7 @@ const Dashboard = ({ walletData, depositData } ) => {
       
       <Wrap padding={{base:'0 40px', md:' 0 40px 0 250px'}}transition='padding-left 0.6s ease' justify='space-between' spacing={10} >
         
-        {/* <Metrics wallet={wallet} tokenData={tokenData} liquidityData={liquidityData}/>    */}
+        <Metrics wallet={wallet} tokenData={tokenData} liquidityData={liquidityData}/>   
         <Treasury wallet={wallet} liquidityData={liquidityData} walletData={walletData} depositData={depositData} />
         
         <Holdings wallet={wallet} walletData={walletData}/>
