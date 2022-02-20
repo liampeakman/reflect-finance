@@ -13,38 +13,30 @@ const Treasury = ({wallet, liquidityData, walletData, depositData}) => {
 
       if (depositData && liquidityData && walletData ) {
         const liqudityEth = liquidityData[wallet].products[0].assets[0].tokens[1].balance.toFixed(2)
-        const liqudityEthUsd = numberWithCommas(liquidityData[wallet].products[0].assets[0].tokens[1].balanceUSD.toFixed(0))
     
         let walletTotal = 0
         let depositTotal = 0
     
-        // Tokens in wallet
-        const walletTokens = []
+        // Get Token balances of wallets 
         walletData.map((index) => {
-            for (let i = 0; i < index[wallet].products.length; i++) {
-                const arr = index[wallet].products[i].assets
-                walletTokens.push(...arr) 
+            for (const product of index[wallet].products) {
+              for (const asset of product.assets) {
+                walletTotal += Number(asset.balanceUSD.toFixed(0));
+              }
             }
         })
-        // Get total balance for tokens in wallet
-        for (let i = 0; i < walletTokens.length; i++) {
-          walletTotal += Number(walletTokens[i].balanceUSD.toFixed(0));
-        }
+
         // Convert string with commas 
         walletTotal = numberWithCommas(walletTotal)
     
-        // Tokens deposited
-        const depositTokens = []
+        // Get Token balances of deposits 
         depositData.map((index) => {
-            for (let i = 0; i < index[wallet].products.length; i++) {
-                const arr = index[wallet].products[i].assets
-                depositTokens.push(...arr) 
+          for (const product of index[wallet].products) {
+            for (const asset of product.assets) {
+              depositTotal += Number(asset.balanceUSD.toFixed(0));
             }
+          }
         })
-        // Get total balance for deposited tokens
-        for (let i = 0; i < depositTokens.length; i++) {
-          depositTotal += Number(depositTokens[i].balanceUSD.toFixed(0));
-        }
         // Convert to string with commas 
         depositTotal = numberWithCommas(depositTotal)
 

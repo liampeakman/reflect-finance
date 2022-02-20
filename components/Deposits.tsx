@@ -1,11 +1,8 @@
-import { Button, Heading, Image, Stack, Text, WrapItem, useColorModeValue } from "@chakra-ui/react"
-import { HiOutlineExternalLink } from "react-icons/hi";
-import HoldingsChart from "./HoldingsChart";
+import { Heading, Image, Stack, Text, WrapItem, useColorModeValue } from "@chakra-ui/react"
 
 const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-  
 
 const Deposits = ({ wallet, depositData }) => {
 
@@ -15,19 +12,11 @@ const Deposits = ({ wallet, depositData }) => {
     // Tokens in wallet
     const tokens = []
     depositData.map((index) => {
-        for (let i = 0; i < index[wallet].products.length; i++) {
-            let addToken = true
-            const arr = index[wallet].products[i].assets
-            // Check if > $100 
-            for (let i = 0; i < arr.length; i++){
-                if (arr[i].balanceUSD < 100){
-                    addToken = false
-                }
-            } 
-            if(addToken){
-                tokens.push(...arr)
-            } 
-        }
+        const arr = index[wallet].products[0].assets
+        for (const item of arr){
+            // Only show values over $100
+            item.balanceUSD < 100 || tokens.push(item)
+        } 
     })
 
     // Sort tokens by price
@@ -36,7 +25,7 @@ const Deposits = ({ wallet, depositData }) => {
 
     let holdingsList = []
 
-    for (let i = 0; i < tokens.length; i++) {
+    for (const token of tokens) {
         holdingsList.push(
             <Stack 
             direction='row' 
@@ -53,10 +42,10 @@ const Deposits = ({ wallet, depositData }) => {
             }}
             >
                 <Stack direction='row' align='center'>
-                    <Image src={tokens[i].tokens[0].tokenImageUrl} w='30px' h='30px' borderRadius={'100px'} ></Image>
-                    <Text width={20} textTransform='capitalize' textAlign='left'>{tokens[i].tokens[0].symbol}</Text>
+                    <Image src={token.tokens[0].tokenImageUrl} w='30px' h='30px' borderRadius={'100px'} ></Image>
+                    <Text width={20} textTransform='capitalize' textAlign='left'>{token.tokens[0].symbol}</Text>
                 </Stack>
-                <Text textAlign='left' fontFamily='DM Sans' >${numberWithCommas(tokens[i].tokens[0].balanceUSD.toFixed(2))}</Text>
+                <Text textAlign='left' fontFamily='DM Sans' >${numberWithCommas(token.tokens[0].balanceUSD.toFixed(2))}</Text>
             </Stack>
         )
     }
@@ -74,7 +63,6 @@ const Deposits = ({ wallet, depositData }) => {
             <Stack 
             direction='column' 
             width='100%' 
-            
             > 
                 <Stack direction='row' spacing={0} align='center' paddingBottom={3}>
                     <Heading size='lg'>Deposits </Heading>
@@ -92,14 +80,11 @@ const Deposits = ({ wallet, depositData }) => {
                       opacity: '20%'
                     },
                     '&::-webkit-scrollbar-track': {
-                      // backgroundColor: "transparent",
                       borderRadius: "10px",
                       backgroundClip:'padding-box',
                       opacity: '20%'
                     },
                     '&::-webkit-scrollbar-thumb': {
-                      // backgroundColor: "#5145BA",
-                      // borderRadius: "10px",
                       boxShadow: 'inset 0 0 0 10px',
                       opacity: '20%'
                     }

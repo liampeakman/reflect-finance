@@ -1,10 +1,8 @@
-import { Button, Heading, Image, Stack, Text, WrapItem, useColorModeValue } from "@chakra-ui/react"
-import { HiOutlineExternalLink } from "react-icons/hi";
+import {  Heading, Image, Stack, Text, WrapItem, useColorModeValue } from "@chakra-ui/react"
 
 const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-  
 
 const Holdings = ({ wallet, walletData}) => {
 
@@ -15,7 +13,10 @@ const Holdings = ({ wallet, walletData}) => {
     const tokens = []
     walletData.map((index) => {
       const arr = index[wallet].products[0].assets
-      tokens.push(...arr)
+      for (const item of arr){
+          // Only show values over $100
+          item.balanceUSD < 100 || tokens.push(item)
+      }
     })
 
     // Sort tokens by price
@@ -23,7 +24,7 @@ const Holdings = ({ wallet, walletData}) => {
 
     let holdingsList = []
 
-    for (let i = 0; i < tokens.length; i++) {
+    for (const token of tokens) {
         holdingsList.push(
             <Stack 
             direction='row' 
@@ -40,10 +41,10 @@ const Holdings = ({ wallet, walletData}) => {
             }}
             >
                 <Stack direction='row' align='center'>
-                    <Image src={tokens[i].tokens[0].tokenImageUrl} w='30px' h='30px' borderRadius={'100px'} ></Image>
-                    <Text width={20} textTransform='capitalize' textAlign='left'>{tokens[i].tokens[0].symbol}</Text>
+                    <Image src={token.tokens[0].tokenImageUrl} w='30px' h='30px' borderRadius={'100px'} ></Image>
+                    <Text width={20} textTransform='capitalize' textAlign='left'>{token.tokens[0].symbol}</Text>
                 </Stack>
-                <Text textAlign='left' fontFamily='DM Sans' >${numberWithCommas(tokens[i].tokens[0].balanceUSD.toFixed(2))}</Text>
+                <Text textAlign='left' fontFamily='DM Sans' >${numberWithCommas(token.tokens[0].balanceUSD.toFixed(2))}</Text>
             </Stack>
         )
     }

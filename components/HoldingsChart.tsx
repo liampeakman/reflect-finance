@@ -11,18 +11,14 @@ const HoldingsChart = ({ wallet, walletData, depositData }) => {
     const newData = walletData.concat(depositData)
 
     // Tokens in wallet
-    const tokenAssets = []
-    newData.map((index) => {
-        for (let i = 0; i < index[wallet].products.length; i++) {
-            const arr = index[wallet].products[i].assets
-            tokenAssets.push(...arr) 
-        }
-    })
-
-
     const tokens = []
-    tokenAssets.map((index) => {
-      tokens.push(index.tokens[0])
+
+    newData.map((index) => {
+        for (const product of index[wallet].products) {
+            for (const asset of product.assets) {
+              tokens.push(asset.tokens[0])
+            }
+        }
     })
 
     // Sort list of tokens from highest value down    
@@ -65,7 +61,9 @@ const HoldingsChart = ({ wallet, walletData, depositData }) => {
 
     let customLabels = []
     
-    for (let i = 0; i < 6; i++) {
+    // Max 
+    const maxLabels = 6
+    for (let i = 0; i < maxLabels; i++) {
       customLabels.push(
         <Stack direction='row' spacing={2} align='center'>
           <Box w={3} h={3} bg={bgColors[i]} border={'solid 1px ' + borderColors[i]}></Box>
