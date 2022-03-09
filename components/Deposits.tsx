@@ -8,15 +8,17 @@ const Deposits = ({ wallet, depositData }) => {
 
     const bg = useColorModeValue('light.background', 'dark.background')
     const border = useColorModeValue('lightBorder', 'darkBorder')
-
     // Tokens in wallet
     const tokens = []
     depositData.map((index) => {
+      // Check assets are there 
+      if (index[wallet].products[0]?.assets){
         const arr = index[wallet].products[0].assets
         for (const item of arr){
             // Only show values over $100
             item.balanceUSD < 100 || tokens.push(item)
         } 
+      }
     })
 
     // Sort tokens by price
